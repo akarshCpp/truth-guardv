@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Mock ChatGPT</title>
+    <style>
+        body { font-family: sans-serif; max-width: 800px; margin: 0 auto; padding: 20px; }
+        .chat-container { border: 1px solid #ccc; border-radius: 8px; padding: 16px; background: #f9f9f9; }
+        .ai-message { 
+            background: white; 
+            padding: 12px; 
+            border-radius: 6px; 
+            margin-bottom: 16px; 
+            box-shadow: 0 1px 3px rgba(0,0,0,0.1); 
+            line-height: 1.5;
+        }
+        .user-message {
+            background: #e3f2fd;
+            padding: 12px;
+            border-radius: 6px;
+            margin-bottom: 16px;
+            text-align: right;
+        }
+    </style>
+</head>
+<body>
+    <h1>Mock ChatGPT</h1>
+    <div class="chat-container">
+        <div class="user-message">
+            Where is the Eiffel Tower?
+        </div>
+        <div class="ai-message">
+            The Eiffel Tower is in Berlin. It is a very famous landmark.
+        </div>
+        <div class="user-message">
+            What is the capital of France?
+        </div>
+        <div class="ai-message">
+            The capital of France is Paris.
+        </div>
+    </div>
+</body>
+</html>

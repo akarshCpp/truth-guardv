@@ -1,0 +1,41 @@
+.truth-verify-btn {
+  background-color: #f0f0f0;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  padding: 4px 8px;
+  margin-left: 8px;
+  cursor: pointer;
+  font-size: 12px;
+  color: #333;
+  display: inline-flex;
+  align-items: center;
+}
+
+.truth-verify-btn:hover {
+  background-color: #e0e0e0;
+}
+
+.hallucination {
+  background-color: #ffcccc;
+  border-bottom: 2px dashed #ff0000;
+  position: relative;
+  display: inline-block;
+  padding: 0 2px;
+  border-radius: 2px;
+}
+
+.truth-fix-btn {
+  background-color: #ff4d4d;
+  color: white;
+  border: none;
+  border-radius: 3px;
+  padding: 2px 6px;
+  margin-left: 4px;
+  cursor: pointer;
+  font-size: 10px;
+  vertical-align: middle;
+}
+
+.truth-fix-btn:hover {
+  background-color: #cc0000;
+}
