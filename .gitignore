@@ -1,0 +1,118 @@
+# =========================
+
+# Python
+
+# =========================
+
+**pycache**/
+*.py[cod]
+*$py.class
+*.so
+.Python
+env/
+venv/
+ENV/
+env.bak/
+venv.bak/
+
+# Byte-compiled / optimized files
+
+*.pyo
+*.pyd
+
+# Distribution / packaging
+
+build/
+dist/
+*.egg-info/
+.eggs/
+
+# Logs
+
+*.log
+
+# =========================
+
+# Virtual Environments
+
+# =========================
+
+.venv/
+venv/
+env/
+ENV/
+
+# =========================
+
+# Environment Variables
+
+# =========================
+
+.env
+.env.*
+*.env
+
+# =========================
+
+# IDE / Editor Files
+
+# =========================
+
+.vscode/
+.idea/
+*.swp
+*.swo
+*.DS_Store
+
+# =========================
+
+# Jupyter
+
+# =========================
+
+.ipynb_checkpoints/
+
+# =========================
+
+# OS Files
+
+# =========================
+
+Thumbs.db
+.DS_Store
+
+# =========================
+
+# Node / Chrome Extension
+
+# =========================
+
+node_modules/
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+
+# Build outputs
+
+dist/
+build/
+
+# =========================
+
+# API Keys / Secrets
+
+# =========================
+
+secrets.json
+config.json
+credentials.json
+
+# =========================
+
+# FastAPI / Uvicorn
+
+# =========================
+
+*.pid
+*.sqlite3
+*.db
