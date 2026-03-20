@@ -108,27 +108,7 @@ Correction Layer → Generates improved, factual responses
 
 UI Layer → Displays results interactively in the browser
 
-🔮 Future Improvements
 
-✅ Claim-level verification (fine-grained fact checking)
-
-✅ NLI-based contradiction detection
-
-✅ Hallucination confidence scoring
-
-🎯 Better UI/UX for inline explanations
-
-⚡ Faster inference & caching
-
-🤝 Contributing
-
-Contributions are welcome! Feel free to:
-
-Open issues
-
-Suggest improvements
-
-Submit pull requests
 
 📄 License
 
