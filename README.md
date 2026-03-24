@@ -1,45 +1,115 @@
-# Truth Guard
+🛡️ Truth Guard
 
-Truth Guard is an AI Hallucination detector and corrector system. It consists of a vanilla JavaScript Chrome Extension (frontend) and a Python FastAPI server (backend).
+Truth Guard is an AI-powered hallucination detection and correction system designed to verify and improve AI-generated content in real time.
 
-## Project Structure
+It consists of:
 
-- `/backend`: Python FastAPI server to process text.
-- `/extension`: Manifest V3 Chrome Extension.
-- `/test_env`: Contains `mock_chatgpt.html` for local testing.
+A Chrome Extension (Frontend) built with vanilla JavaScript
 
-## Backend Setup
+A FastAPI Backend for verification, reasoning, and correction
 
-1. Navigate to the `backend` directory.
-2. Ensure you have activated the virtual environment:
-   - Windows: `.\venv\Scripts\activate`
-   - Mac/Linux: `source venv/bin/activate`
-3. Install dependencies:
-   ```bash
-   pip install -r requirements.txt
-   ```
-4. Copy `.env.example` to `.env` and configure your API keys:
-   - `GROQ_API_KEY` (Free at console.groq.com)
-   - `EXA_API_KEY` (For neural web searches)
-5. Start the FastAPI server:
-   ```bash
-   uvicorn main:app --reload
-   ```
-   The backend will run on `http://localhost:8000`.
+🚀 Features
 
-## Extension Setup
+🔍 Detects hallucinations in AI-generated responses
 
-1. Open Google Chrome.
-2. Navigate to `chrome://extensions/`.
-3. Enable **Developer mode** in the top right corner.
-4. Click **Load unpacked**.
-5. Select the `extension` folder in this repository.
-6. The extension is now loaded and will automatically run on all webpages.
+🧠 Uses LLM + retrieval-based verification (RAG-style)
 
-## Usage
+⚡ Real-time validation via browser extension
 
-1. Open any webpage containing elements with the class `ai-message` (or use the provided `test_env/mock_chatgpt.html`).
-2. You will see a "🛡️ Verify Truth" button appear next to AI messages.
-3. Click the button. The extension will send the text to the backend.
-4. If a hallucination is detected, the text will be highlighted in red with a "Fix it" button.
-5. Click "Fix it" to automatically apply the correction.
+🛠️ One-click correction for inaccurate content
+
+🌐 Works on any webpage with AI-generated text
+
+🏗️ Project Structure
+Truth-Guard/
+│── backend/        # FastAPI server (core logic & APIs)
+│── extension/      # Chrome Extension (Manifest V3)
+│── test_env/       # Local testing environment
+│   └── mock_chatgpt.html
+│── README.md
+⚙️ Backend Setup
+1️⃣ Navigate to Backend
+cd backend
+2️⃣ Activate Virtual Environment
+
+Windows
+
+.\venv\Scripts\activate
+
+Mac/Linux
+
+source venv/bin/activate
+3️⃣ Install Dependencies
+pip install -r requirements.txt
+4️⃣ Configure Environment Variables
+
+Create a .env file from .env.example and add:
+
+GROQ_API_KEY=your_api_key_here
+EXA_API_KEY=your_api_key_here
+
+GROQ_API_KEY → LLM inference (free at https://console.groq.com
+)
+
+EXA_API_KEY → Neural search for fact verification
+
+5️⃣ Run the Server
+uvicorn main:app --reload
+
+📍 Backend runs at:
+👉 http://localhost:8000
+
+🧩 Extension Setup
+
+Open Google Chrome
+
+Go to: chrome://extensions/
+
+Enable Developer Mode (top right)
+
+Click Load unpacked
+
+Select the extension/ folder
+
+✅ The extension is now installed and active.
+
+🧪 Usage
+
+Open any webpage containing AI-generated content
+(or use test_env/mock_chatgpt.html for testing)
+
+A 🛡️ Verify Truth button will appear next to detected AI responses
+
+Click Verify Truth:
+
+The text is sent to the backend for validation
+
+Hallucinated content is flagged
+
+If issues are found:
+
+🔴 Incorrect text is highlighted
+
+🛠️ A Fix It button appears
+
+Click Fix It to apply corrections instantly
+
+🧠 How It Works (High-Level)
+
+Extraction Layer → Chrome extension captures AI responses
+
+Verification Layer → Backend performs:
+
+Retrieval-based fact checking (RAG)
+
+LLM-based reasoning
+
+Correction Layer → Generates improved, factual responses
+
+UI Layer → Displays results interactively in the browser
+
+
+
+📄 License
+
+This project is licensed under the MIT License.
