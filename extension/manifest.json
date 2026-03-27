@@ -7,19 +7,6 @@
   "host_permissions": [
     "http://localhost:8000/*"
   ],
-  "icons": {
-    "16": "icon.png",
-    "48": "icon.png",
-    "128": "icon.png"
-  },
-  "action": {
-    "default_icon": {
-      "16": "icon.png",
-      "48": "icon.png",
-      "128": "icon.png"
-    },
-    "default_title": "Truth Guard"
-  },
   "background": {
     "service_worker": "background.js"
   },
