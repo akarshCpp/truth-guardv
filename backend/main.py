@@ -56,7 +56,7 @@ async def verify_text(request: VerifyRequest):
         
         # 1. Gather true facts from EXA (if a key is provided)
         search_context = "No internet context available."
-        source_url = "None found"
+        sources_list = []
         
         if exa_api_key and exa_api_key != "your_exa_api_key_here":
             try:
@@ -66,14 +66,21 @@ async def verify_text(request: VerifyRequest):
                     request.text,
                     type="neural",
                     use_autoprompt=True,
-                    num_results=2,
+                    num_results=3,
                     text=True
                 )
                 
                 if search_response.results:
                     # Combine context from top results
                     search_context = "\n\n".join([f"Source ({r.url}):\n{r.text[:1000]}" for r in search_response.results])
-                    source_url = search_response.results[0].url
+                    for r in search_response.results:
+                        title = getattr(r, 'title', '')
+                        if not title:
+                            try:
+                                title = r.url.split('://')[1].split('/')[0]
+                            except:
+                                title = "Source Link"
+                        sources_list.append({"url": r.url, "title": title})
             except Exception as exa_err:
                 print(f"Exa search failed: {exa_err}")
                 search_context = f"Failed to retrieve internet facts: {exa_err}"
@@ -100,10 +107,9 @@ async def verify_text(request: VerifyRequest):
             "text": request.text
         })
         
-        # Merge Exa source URL into result if the LLM didn't provide its own
+        # Add Exa source URLs into the result dict
         result_dict = result.model_dump()
-        if not result_dict.get("source") or result_dict["source"] == "None found":
-             result_dict["source"] = source_url
+        result_dict["sources"] = sources_list
              
         return result_dict
         

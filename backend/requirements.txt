@@ -4,6 +4,9 @@ langchain
 pydantic
 python-dotenv
 langchain-groq
-
 langchain-exa
 exa-py
+datasets
+pandas
+scikit-learn
+tqdm

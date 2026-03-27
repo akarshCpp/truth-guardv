@@ -1,0 +1,151 @@
+sentence,ground_truth,annotation_label,predicted_status,confidence,correction,source
+"She began playing music at an early age, learning to play the piano and guitar.",false,minor_inaccurate,true,80,,"https://jonimitchell.com/library/print.cfm?id=2042, https://www.encyclopedia.com/education/news-wires-white-papers-and-books/carlton-vanessa, https://www.imdb.com/name/nm1216062/bio/"
+"He then attended the University of Virginia School of Law, where he earned his Juris Doctor degree in 1972.",false,minor_inaccurate,false,90,1970 or 1973 based on the context of other students,https://libguides.law.virginia.edu/faculty/saltzburg and https://www.law.virginia.edu/news/202603/j-harvie-wilkinson-iii-72-years-outstanding-virginian-reflects-life-service
+He graduated from the University of Maryland in 1969 with a degree in business administration.,false,minor_inaccurate,false,90,"UMBC (University of Maryland, Baltimore County) is not the same as the University of Maryland",https://umbc.edu/stories/biz-whiz-andrew-j-sherman-83-poli-sci
+He was assassinated by a disgruntled office seeker in 1893.,true,accurate,false,80,"July 2, 1881",https://en.wikipedia.org/wiki/Assassination_of_James_A._Garfield
+"Winnebago Deal is an American indie rock band from Brooklyn, New York.",false,minor_inaccurate,false,90,a British rock band from Oxford,https://en.wikipedia.org/wiki/Winnebago_Deal
+He was buried in Westminster Abbey.,false,major_inaccurate,true,100,,https://www.westminster-abbey.org/
+"Finchem was born in Washington, D.C., and grew up in Bethesda, Maryland.",false,major_inaccurate,false,90,Finchem was born in Michigan.,https://votefinchem.com/about/
+"He was a regular starter for the club, making over 200 appearances in the NSL.",false,major_inaccurate,false,80,"The provided Internet Context does not mention the exact number of appearances, but it does mention that Charlie Yankos played for several clubs including Heidelberg United, West Adelaide, APIA Leichhardt, PAOK, Blacktown City, Wollongong City, and Canterbury-Marrickville.",https://en.wikipedia.org/wiki/Charlie_Yankos
+"He began his acting career in the late 1980s, appearing in television shows such as L.A. Law, Cheers, and Seinfeld.",false,major_inaccurate,false,80,"He began his acting career earlier, with film roles in the 1980s and theater work before that","https://en.wikipedia.org/wiki/Joel_Polis, https://en.wikipedia.org/wiki/Ted_Danson, https://www.imdb.com/name/nm0864997/"
+He was recalled in 1790 and died in London in 1794.,false,major_inaccurate,false,80,died in 1810,https://historyofparliamentonline.org/volume/1790-1820/member/benfield-paul-1741-1810
+"He attended the University of California, Los Angeles, where he earned a degree in theater.",false,major_inaccurate,true,100,,https://alumni.ucla.edu/stories/sean-astin-97/
+"Finchem began his career in the golf industry in 1975, when he joined the PGA Tour as its first full-time legal counsel.",false,major_inaccurate,false,80,"Finchem served in the White House for two years during the administration of President Jimmy Carter, from 1978 to 1979, before joining the PGA Tour.",https://en.wikipedia.org/wiki/Tim_Finchem
+"After college, she moved to Brooklyn, New York, and began performing in clubs and bars.",false,minor_inaccurate,false,0,"The provided text does not specify which person it is referring to, but based on the context, it could be Solana Rowe or Bridget Barkan. According to the context, Solana Rowe was in the East Village, but it does not mention her moving to Brooklyn after college. Bridget Barkan is a native New Yorker, but it does not mention her moving to Brooklyn after college either.",https://www.villagevoice.com/from-buried-in-books-to-behind-the-bar-solana-rowe-sings-her-way-out/ and https://www.bridgetbarkan.com/intro
+"Manesh was born in Tehran, Iran, and moved to the United States in 1975.",false,minor_inaccurate,false,90,"Manesh was born in Mashhad, Iran","https://en.wikipedia.org/wiki/Marshall_Manesh, https://id.loc.gov/authorities/names/no2015089046.html, https://www.encyclopedia.com/education/news-wires-white-papers-and-books/manesh-marshall-1950-masha-manesh"
+He was part of the Mariners team that won the APL Championship in 2005.,false,major_inaccurate,false,90,did not win the APL Championship in 2005,https://www.espn.in/football/matchstats/_/gameId/189489 and other sources
+He was a two-time All-Star and won the National League (NL) ERA title in 1985.,false,minor_inaccurate,true,100,,https://www.baseball-reference.com/leagues/majors/1985-pitching-leaders.shtml
+"The band has released three full-length albums, two EPs, and a handful of singles.",true,accurate,false,80,"The statement is too general and does not specify which band. However, based on the provided context, Spiritbox has released EPs and is signed to a label, Loathe has released two EPs and three studio albums, and Thrice has a more extensive discography. To provide an accurate statement, the band in question needs to be specified.","https://en.wikipedia.org/wiki/Spiritbox, https://en.wikipedia.org/wiki/Loathe_(band), https://en.wikipedia.org/wiki/Thrice"
+He was promoted to Deputy Commissioner in 1988 and Commissioner in 1994.,true,accurate,false,90,"Joseph Philip Robert Murray was appointed as the 19th commissioner of the Royal Canadian Mounted Police in 1994, but the user text does not specify the person, however, based on the context it seems to be referring to Joseph Philip Robert Murray or Kevin M. Tucker. Kevin M. Tucker stepped down as commissioner in 1988 for a position in the private sector. There is no information about him being promoted to Deputy Commissioner in 1988. Joseph Philip Robert Murray became the commissioner of the Royal Canadian Mounted Police in 1994, but there is no information about him being promoted to Deputy Commissioner in 1988.","https://en.wikipedia.org/wiki/Kevin_M._Tucker, https://en.wikipedia.org/wiki/Joseph_Philip_Robert_Murray"
+"She released her debut album, Dawn's Music, in 2004.",false,minor_inaccurate,false,100,Dawn,https://en.wikipedia.org/wiki/Dawn_(Dawn_Robinson_album)
+The band was formed in 2006 by singer/guitarist/songwriter/producer Chris Diken and drummer/producer/engineer/songwriter/multi-instrumentalist Matt Schulz.,false,major_inaccurate,false,90,"No information about a musician named Chris Diken was found in the provided context. However, there is information about Chris Szkup, a guitarist and vocalist from Melbourne, Australia, who co-founded The Feckers.",https://www.thefeckers.net/about/members/
+"She attended the University of North Carolina at Chapel Hill, where she studied music and theater.",false,major_inaccurate,false,80,University of North Carolina at Greensboro,https://library.uncg.edu/emmylou-harris-from-uncg-to-the-grand-ole-opry/
+"Rick Mahler (born Richard Alan Mahler on April 18, 1957 in Atlanta, Georgia) was an American professional baseball pitcher who played for the Atlanta Braves, Cincinnati Reds, Montreal Expos, and Minnesota Twins of Major League Baseball (MLB) from 1978 to 1990.",false,minor_inaccurate,false,90,"Rick Mahler (born August 5, 1953 in Austin, TX)",https://www.baseball-reference.com/players/m/mahleri01.shtml
+He has also appeared in films such as The Big Lebowski and The Wedding Planner.,false,minor_inaccurate,true,100,,https://en.wikipedia.org/wiki/Mike_Gomez
+"King also had a successful career in the Australian Premier League, playing for the Newcastle Breakers and the Central Coast Mariners.",false,major_inaccurate,false,90,"King played for Canberra United, Newcastle Jets, and Central Coast Mariners in the A-League Women's or Australian professional leagues, but there is no information about her playing in the Australian Premier League or for the Newcastle Breakers",https://en.wikipedia.org/wiki/Taren_King
+"King retired from professional football in 2006, after a successful career spanning 17 years.",false,major_inaccurate,false,90,"Ledley King retired in 2012, while Marlon King retired in 2014","https://en.wikipedia.org/wiki/Ledley_King, https://en.wikipedia.org/wiki/Marlon_King"
+"Their sound has been described as a mix of indie rock, post-punk, and psychedelic rock.",false,minor_inaccurate,true,80,,"https://en.wikipedia.org/wiki/The_Horrors, https://www.allmusic.com/artist/the-horrors-mn0000766444"
+"He was an All-Star in 1983 and 1985, and won the NL ERA title in 1985 with a 2.87 ERA.",false,minor_inaccurate,true,100,,https://www.baseball-reference.com/leagues/majors/1985-pitching-leaders.shtml
+"During his tenure, the PGA Tour grew from a domestic tour to an international tour, with events in more than 30 countries.",false,minor_inaccurate,false,80,The PGA Tour is an organizer of professional golf tours in North America,https://en.wikipedia.org/wiki/PGA_Tour
+"The band has toured extensively throughout the United States and Europe, playing shows with acts such as The National, The Walkmen, The Hold Steady, The Black Keys, and The War on Drugs.",false,major_inaccurate,true,100,,"https://en.wikipedia.org/wiki/The_Walkmen, https://en.wikipedia.org/wiki/The_National_(band), https://en.wikipedia.org/wiki/The_Hold_Steady"
+They have two children.,false,major_inaccurate,true,100,,"https://www.popsugar.com/celebrity/how-many-kids-do-john-krasinski-emily-blunt-have-46706906, https://www.today.com/parents/celebrity/emily-blunt-john-krasinski-kids-rcna132490"
+Mahler was drafted by the Braves in the first round of the 1975 amateur draft.,true,accurate,false,90,Mahler was signed by the Braves as an amateur free agent in 1975,https://en.wikipedia.org/wiki/Rick_Mahler
+"He also oversaw the introduction of the FedEx Cup, a season-long points competition that culminates in a four-tournament playoff.",true,accurate,true,100,,https://en.wikipedia.org/wiki/FedEx_Cup
+Wilhelm Windelband (15 March 1848 – 18 September 1915) was a German philosopher of the late 19th and early 20th centuries.,false,minor_inaccurate,false,90,11 May 1848,"https://plato.stanford.edu/entries/wilhelm-windelband/, https://en.wikipedia.org/wiki/Wilhelm_Windelband"
+"William ""Bill"" Quinn (April 28, 1912 – April 22, 1994) was an American actor, best known for his role as Ralph Hourback on the CBS television series The Rifleman.",false,minor_inaccurate,false,90,"William ""Bill"" Quinn (May 6, 1912 – April 29, 1994)",https://en.wikipedia.org/wiki/Bill_quinn
+Manesh has been married to actress Shohreh Aghdashloo since 1992.,false,major_inaccurate,error,0,,None
+"Since then, she has released four more albums, including Sweetheart Rodeo (2008), Dawn Landes & The Hounds (2010), Fireproof (2012), and Meet Me at the River (2018).",false,minor_inaccurate,error,0,,None
+"He is now remembered mainly for the terms ""nomothetic"" and ""idiographic,"" which he introduced.",true,accurate,false,80,which were introduced by Wilhelm Windelband,https://en.wikipedia.org/wiki/Nomothetic_and_idiographic
+Quinn was born in New York City and began his career in the 1930s as a radio actor.,true,accurate,false,80,began working in films in New York City as a teenager and started working on radio around 1934,https://en.wikipedia.org/wiki/Bill_quinn
+"He is now a coach, and is currently the head coach of the Central Coast Mariners Academy.",false,major_inaccurate,error,0,,None
+"He currently resides in Los Angeles, California.",true,accurate,error,0,,None
+"He made his major league debut with the Braves in 1978, and was a member of the team's starting rotation for the next five seasons.",false,minor_inaccurate,error,0,,None
+"She is best known for her novel A Woman of the Iron People (1991), which won the James Tiptree, Jr. Award and was a finalist for the Nebula Award for Best Novel.",true,accurate,false,80,"which won the Otherwise Award and the James Tiptree, Jr. Award","https://en.wikipedia.org/wiki/A_Woman_of_the_Iron_People, https://otherwiseaward.org/award/1991-otherwise-award, https://jamesdavisnicoll.com/review/the-first-tiptree-award-winner-review"
+"He appeared in numerous films, including The Man Who Shot Liberty Valance (1962), The Music Man (1962), and The Sting (1973).",false,major_inaccurate,true,100,,https://www.imdb.com/name/nm0696481/
+Eleanor Arnason (born 1942) is an American science fiction and fantasy writer.,true,accurate,error,0,,None
+"They have also performed at festivals such as SXSW, CMJ, and the Pitchfork Music Festival.",false,major_inaccurate,error,0,,None
+He was also a strong advocate for civil rights and was a vocal opponent of the city's corrupt political machine.,false,minor_inaccurate,error,0,,None
+"He was traded to the Reds in 1984, and then to the Expos in 1986.",false,minor_inaccurate,error,0,,None
+Finchem retired as Commissioner in 2016 and was succeeded by Jay Monahan.,true,accurate,error,0,,None
+"He also wrote on history, psychology, the philosophy of religion, values, and other topics.",true,accurate,error,0,,None
+"Winnebago Deal has been featured in publications such as Rolling Stone, Spin, and The New York Times.",false,major_inaccurate,error,0,,None
+"He also appeared in television series such as The Andy Griffith Show, The Untouchables, and The Twilight Zone.",false,major_inaccurate,error,0,,None
+He was inducted into the World Golf Hall of Fame in 2017.,false,major_inaccurate,error,0,,None
+"Noel Anthony Hogan (born 25 December 1971) is an Irish musician, singer-songwriter and record producer.",true,accurate,false,80,guitarist and co-songwriter of the Irish alternative rock band the Cranberries,https://en.wikipedia.org/wiki/Noel_Hogan
+"He was traded to the Twins in 1989, and finished his career with them in 1990.",false,major_inaccurate,true,100,,"https://en.wikipedia.org/wiki/1989_Minnesota_Twins_season, https://en.wikipedia.org/wiki/1990_Minnesota_Twins_season"
+"Her other works include Ring of Swords (1993), The Sword Smith (1998), and The Hound of Merin (2002).",false,minor_inaccurate,false,80,Sherwood Smith,https://en.wikipedia.org/wiki/Sherwood_Smith and https://www.librarything.com/author/robersonjennifer
+"She has also written several short stories, including ""Dapple"" (1991), which won the Nebula Award for Best Novelette.",false,minor_inaccurate,false,80,did not win the Nebula Award for Best Novelette,http://www.sfadb.com/db/Janet_Kagan and https://nebulas.sfwa.org/nominees/jane-yolen/
+Akila Dananjaya (born 2 August 1995) is a Sri Lankan cricketer.,false,minor_inaccurate,error,0,,None
+He was a neo-Kantian who protested other neo-Kantians of his time and maintained a critical position towards psychologism.,true,accurate,error,0,,None
+He was a student of Kuno Fischer and Franz Brentano.,false,major_inaccurate,false,80,"There is no information that suggests he was a student of Kuno Fischer and Franz Brentano. However, both were influential philosophers of the time.","https://en.wikipedia.org/wiki/Kuno_Fischer, https://plato.stanford.edu/entries/brentano"
+"Quinn was a regular on The Rifleman, appearing in all 168 episodes of the series.",false,minor_inaccurate,error,0,,None
+He is best known as the lead guitarist and co-songwriter of the alternative rock band The Cranberries.,true,accurate,error,0,,None
+He also directed several episodes of the show.,false,major_inaccurate,error,0,,None
+"He was called to the bar in 1845, and became a Queen's Counsel in 1859.",false,major_inaccurate,error,0,,None
+"Hogan formed the band in 1989 with vocalist Dolores O'Riordan, bassist Mike Hogan and drummer Fergal Lawler.",true,accurate,false,90,"Noel Hogan and Mike Hogan formed the Cranberry Saw Us with drummer Fergal Lawler, and singer Niall Quinn in Limerick, Ireland in 1989. Dolores O'Riordan joined later in 1990.","https://www.thisdayinmusic.com/artists/the-Cranberries, https://en.wikipedia.org/wiki/The_Cranberries"
+"Mahler was known for his durability, as he pitched over 200 innings in six consecutive seasons from 1983 to 1988.",false,minor_inaccurate,error,0,,None
+"He finished his career with a record of 119–121, a 3.90 ERA, and 1,07",false,minor_inaccurate,error,0,,None
+"Windelband is known as one of the founders of the ""Baden School"" of neo-Kantianism.",true,accurate,true,100,,https://plato.stanford.edu/entries/wilhelm-windelband/
+He made his international debut for the Sri Lankan cricket team in August 2018.,false,minor_inaccurate,false,80,"He made his international debut for the Sri Lankan cricket team in 2024, after being selected for the England series",https://sports.info/cricket/who-is-milan-rathnayake-sri-lankas-new-test-addition-for-england-series-after-strong-domestic-performance-6899970
+He is a right-arm off-spinner and right-handed batsman.,false,minor_inaccurate,error,0,,None
+"His students included Edmund Husserl, Adolf Reinach, Carl Stumpf, and Richard von Mises.",false,major_inaccurate,error,0,,None
+James Blair (1732–1782) was an American lawyer and politician from South Carolina.,false,minor_inaccurate,error,0,,None
+"He was born in London, the son of a barrister, and was educated at Eton College and Trinity College, Cambridge.",false,major_inaccurate,error,0,,None
+"Arnason's work often focuses on themes of gender, ecology, and Native American culture.",false,minor_inaccurate,error,0,,None
+"The band achieved international success in the 1990s with their debut album Everybody Else Is Doing It, So Why Can't We?",true,accurate,true,100,,"https://en.wikipedia.org/wiki/Everybody_Else_Is_Doing_It,_So_Why_Can't_We"
+Quinn died in 1994 at the age of 81.,true,accurate,error,0,,None
+"She is best known for her roles in the films The Misfits (1961), The Unforgiven (1960), and The Mambo Kings (1992).",false,major_inaccurate,error,0,,None
+He was a delegate to the Continental Congress from 1774 to 1776 and a signer of the Declaration of Independence.,false,major_inaccurate,error,0,,None
+Dananjaya made his first-class debut for Sri Lanka Army Sports Club in the 2013–14 Premier League Tournament.,false,major_inaccurate,error,0,,None
+"He was the leading wicket-taker in the tournament, taking 32 wickets in seven matches.",false,minor_inaccurate,false,90,"Jasprit Bumrah finished with 15 wickets at an average of 8.26 in the T20 World Cup 2024, and Varun Chakaravarthy took 9 wickets in 3 matches in the Champions Trophy 2025.","https://www.icc-cricket.com/tournaments/t20cricketworldcup/news/a-genius-of-his-craft-reflecting-on-jasprit-bumrah-s-t20-world-cup-2024, https://www.business-standard.com/cricket/champions-trophy/varun-to-santner-top-10-highest-wicket-takers-in-champions-trophy-2025-125030900553_1.html"
+Carter Henry Harrison Sr.,true,accurate,true,100,,https://en.wikipedia.org/wiki/Carter_Harrison_Sr.
+She has been praised for her ability to combine elements of science fiction and fantasy with traditional storytelling.,true,accurate,true,95,,"https://en.wikipedia.org/wiki/N._K._Jemisin, https://www.britannica.com/biography/N-K-Jemisin"
+Freddie Frith (1917–1994) was an English motorcycle racer who competed in the Isle of Man TT races and other international events.,false,minor_inaccurate,error,0,,None
+"Carol Huston (born October 17, 1934) is an American actress, singer, and dancer.",false,minor_inaccurate,error,0,,None
+"and the hit singles ""Linger"" and ""Zombie"".",true,accurate,error,0,,None
+He was born in London and began racing in the 1930s.,false,minor_inaccurate,error,0,,None
+He made his List A debut for Sri Lanka Army Sports Club in the 2014–15 Premier Limited Overs Tournament.,false,major_inaccurate,error,0,,None
+"Reynolds was a prolific author, writing on a wide range of topics.",false,major_inaccurate,error,0,,None
+"Blair was born in 1732 in Williamsburg, Virginia.",false,major_inaccurate,error,0,,None
+"He was appointed a judge of the Court of Common Pleas in 1867, and was knighted in 1871.",false,major_inaccurate,error,0,,None
+"Hogan wrote or co-wrote the majority of the band's material, including their biggest hits.",true,accurate,error,0,,None
+He was educated at the College of William and Mary and studied law in England.,false,major_inaccurate,error,0,,None
+He was admitted to the bar in 1760 and began practicing law in South Carolina.,false,major_inaccurate,error,0,,None
+"She made her film debut in The Misfits, starring alongside Clark Gable and Marilyn Monroe.",false,major_inaccurate,error,0,,None
+"In August 2018, he was named in the Sri Lankan squad for the 2018 Asia Cup.",true,accurate,error,0,,None
+"He wrote several books on legal topics, including The Law of Libel and Slander (1863), The Law of Copyright (1865), and The Law of Patents for Inventions (1868).",false,major_inaccurate,error,0,,None
+He also produced the band's albums Bury the Hatchet (1999) and Wake Up and Smell the Coffee (2001).,true,accurate,error,0,,None
+"After The Cranberries disbanded in 2003, Hogan formed the band Mono Band and released two albums, Mono Band (2005) and Mono Band 2 (2008).",false,minor_inaccurate,error,0,,None
+"He also wrote on a variety of other topics, including history, biography, and literature.",false,major_inaccurate,error,0,,None
+He made his One Day International (ODI) debut for Sri Lanka against Bangladesh on 15 September 2018.,false,major_inaccurate,error,0,,None
+"John Russell Reynolds (1820–1876) was an English lawyer, judge, and author.",false,major_inaccurate,error,0,,None
+"He also won the North West 200 in 1938 and 1939, and the Ulster Grand Prix in 1938 and 1939.",false,minor_inaccurate,error,0,,None
+"He won the Isle of Man TT in 1938 and 1939, and was the first rider to win the Senior TT twice in succession.",false,minor_inaccurate,error,0,,None
+"He was the son of the city's first mayor, Carter Henry Harrison I. Harrison was a Democrat and a strong supporter of labor unions.",false,minor_inaccurate,error,0,,None
+"Huston began her career as a dancer in the 1950s, performing in Broadway musicals such as Guys and Dolls and Can-Can.",false,major_inaccurate,error,0,,None
+"Frith was a popular figure in the racing world, and was known for his daring and aggressive riding style.",true,accurate,error,0,,None
+"(August 15, 1825 – October 28, 1893) was an American politician who served five terms as the mayor of Chicago, Illinois, from 1879 to 1887 and again from 1889 to 1893.",false,minor_inaccurate,error,0,,None
+He was assassinated by a disgruntled office seeker in 1893.,true,accurate,error,0,,None
+He was a signer of the Declaration of Independence and was a member of the committee that drafted the Articles of Confederation.,false,major_inaccurate,error,0,,None
+"Hogan has also produced albums for other artists, including The Cranberries' Something Else (2017) and Noel Gallagher's High",true,accurate,error,0,,None
+He also wrote a biography of the poet John Keats (1848).,false,major_inaccurate,error,0,,None
+"She went on to appear in several other films, including The Unforgiven, The Mambo Kings, and The Godfather Part III.",false,major_inaccurate,error,0,,None
+"In October 2018, he was named in Sri Lanka's Test squad for their series against England, but he did not play.",true,accurate,error,0,,None
+"Harrison was born in Lexington, Kentucky, and moved to Chicago in 1853.",false,minor_inaccurate,error,0,,None
+"He has also released two solo albums, The Sky Road (2009) and Ten Songs (2013).",false,major_inaccurate,error,0,,None
+"In 1774, Blair was elected to the Continental Congress, where he served until 1776.",false,major_inaccurate,error,0,,None
+"He was also known for his willingness to help other riders, and was often seen helping to push other riders' bikes to the start line.",false,minor_inaccurate,error,0,,None
+"He was a frequent contributor to the Saturday Review, and wrote several books on Shakespeare, including The Mystery of William Shakespeare (1848) and The Authorship of Shakespeare (1875).",false,major_inaccurate,error,0,,None
+"She has also appeared in television series such as The Rockford Files, The Waltons, and The Golden Girls.",false,major_inaccurate,error,0,,None
+"He was the leading wicket-taker for Sri Lanka in the tournament, with nine dismiss",false,major_inaccurate,error,0,,None
+He was elected to the Illinois House of Representatives in 1864 and served until 1872.,false,minor_inaccurate,error,0,,None
+"Matthew Aylmer, 1st Baron Aylmer (1708–1794) was an Irish soldier and colonial administrator.",false,minor_inaccurate,error,0,,None
+"Gia Marie Carangi (January 29, 1960 – November 18, 1986) was an American model during the late 1970s and early 1980s.",true,accurate,error,0,,None
+Derek King (born 28 April 1965) is an Australian former professional footballer who played as a midfielder.,false,major_inaccurate,error,0,,None
+"He died in 1782 in Charleston, South Carolina.",false,major_inaccurate,error,0,,None
+He was elected mayor of Chicago in 1879 and served until 1887.,true,accurate,error,0,,None
+"She has released five solo albums, and has collaborated with a variety of artists, including Sufjan Stevens, Will Oldham, and Iron & Wine.",true,accurate,error,0,,None
+"He was born in Dublin, the son of a barrister, and was educated at Trinity College, Dublin.",false,minor_inaccurate,error,0,,None
+"Dawn Landes (born August 8, 1979) is an American singer-songwriter, multi-instrumentalist, and producer.",false,minor_inaccurate,error,0,,None
+"He died in 1994, aged 77.",false,minor_inaccurate,error,0,,None
+"Considered by some to be the first supermodel, she was featured on the cover of fashion magazines, including multiple editions of Vogue and Cosmopolitan, and appeared in advertising campaigns for such fashion houses as Armani, Christian Dior, Versace, and Yves Saint Laurent.",true,accurate,error,0,,None
+"In December 2018, he was named in Sri Lanka's team for the 2018 ACC Emerging Teams Asia Cup.",false,major_inaccurate,error,0,,None
+"He retired from racing in 1947, but continued to be involved in the sport, working as a mechanic and team manager.",false,minor_inaccurate,error,0,,None
+"After the Revolutionary War, Blair returned to South Carolina and served in the state legislature.",false,major_inaccurate,error,0,,None
+"He is best known for his time with the National Soccer League (NSL) club Sydney Olympic, where he won the NSL Championship in 2002.",false,major_inaccurate,error,0,,None
+She is considered to be one of the first famous women to die of the disease.,true,accurate,error,0,,None
+"During his tenure, he was a strong advocate for labor unions and was instrumental in the passage of the Eight-Hour Law in 1885.",false,major_inaccurate,error,0,,None
+He was made a baron in 1782 and was appointed Commander-in-Chief of the British forces in North America in 1783.,false,major_inaccurate,error,0,,None
+"Tim Finchem (born August 24, 1947) is an American businessman and former Commissioner of the PGA Tour.",false,minor_inaccurate,error,0,,None
+"Carangi's life was marred by drug addiction and depression, leading to her death from AIDS-related complications at the age of 26.",true,accurate,error,0,,None
+He was re-elected in 1889 and served until his assassination in 1893.,false,minor_inaccurate,error,0,,None
+He served as Commissioner from 1994 to 2016.,true,accurate,error,0,,None
+He is best known for his roles as Ranjit on the CBS sitcom How I Met Your Mother and as Dr. Ravi Kapoor on the ABC sitcom Dharma & Greg.,false,minor_inaccurate,error,0,,None
+"Landes was born in Louisville, Kentucky, and grew up in New York City.",true,accurate,error,0,,None
+"She has also composed music for film and television, including the score for the feature film The Cake Eaters.",false,major_inaccurate,error,0,,None
+King began his career in the NSL with Sydney Olympic in 1989.,false,major_inaccurate,error,0,,None
+"Marshall Manesh (born October 24, 1956) is an American actor.",false,minor_inaccurate,error,0,,None
+He joined the British Army in 1727 and served in the War of the Austrian Succession and the Seven Years' War.,false,minor_inaccurate,error,0,,None
+He was promoted to lieutenant-general in 1772 and was appointed Governor of Gibraltar in 1775.,false,major_inaccurate,error,0,,None
+"He was part of the team that won the NSL Championship in 2002, and was also part of the team that won the NSL Cup in 2000.",false,major_inaccurate,error,0,,None
+He was a popular mayor and was known for his support of the working class.,true,accurate,error,0,,None
