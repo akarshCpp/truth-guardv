@@ -10,3 +10,4 @@ datasets
 pandas
 scikit-learn
 tqdm
+scipy

@@ -4,7 +4,9 @@ import sys
 import json
 from dotenv import load_dotenv
 import pandas as pd
-from sklearn.metrics import accuracy_score, precision_recall_fscore_support, confusion_matrix
+import numpy as np
+from sklearn.metrics import accuracy_score, precision_recall_fscore_support, confusion_matrix, average_precision_score
+from scipy.stats import pearsonr
 from tqdm import tqdm
 
 # Fix Windows encoding issues
@@ -24,169 +26,119 @@ from main import verify_text, VerifyRequest
 load_dotenv()
 
 async def evaluate():
-    print("=" * 55)
-    print("  TRUTH GUARD - WikiBio GPT-3 Hallucination Evaluation")
-    print("=" * 55)
+    print("=" * 65)
+    print("  TRUTH GUARD - WikiBio GPT-3 Advanced Hallucination Evaluation")
+    print("=" * 65)
 
     groq_api_key = os.getenv("GROQ_API_KEY")
     exa_api_key = os.getenv("EXA_API_KEY")
 
     if not groq_api_key or groq_api_key == "your_api_key_here":
-        print("[!] Warning: GROQ_API_KEY is not set. The backend will use hardcoded fallback logic.")
+        print("[!] Warning: GROQ_API_KEY is not set. Backend will use fallback.")
 
-    # ──────────────────────────────────────────────────────
     # 1. Load Dataset
-    # ──────────────────────────────────────────────────────
     global HAS_DATASETS
     print("\n[*] Loading potsawee/wiki_bio_gpt3_hallucination dataset...")
     dataset_records = []
 
     if HAS_DATASETS:
         try:
-            dataset = load_dataset(
-                "potsawee/wiki_bio_gpt3_hallucination",
-                split="evaluation"
-            )
-
+            dataset = load_dataset("potsawee/wiki_bio_gpt3_hallucination", split="evaluation")
             for row in dataset:
                 gpt3_sentences = row["gpt3_sentences"]
                 annotations = row["annotation"]
-                wiki_bio_text = row.get("wiki_bio_text", "")
-
-                # Each sentence gets its own record
                 for sentence, label in zip(gpt3_sentences, annotations):
-                    # Map: 'accurate' -> true, 'minor_inaccurate'/'major_inaccurate' -> false
-                    is_hallucinated = label in ("minor_inaccurate", "major_inaccurate")
+                    # Ground Truth Mapping:
+                    # NonFact (Hallucinated): accurate=0, minor=1, major=1
+                    # Factual: accurate=1, minor=0, major=0
+                    # PCC Score: accurate=1.0, minor=0.5, major=0.0
                     dataset_records.append({
                         "text": sentence,
-                        "ground_truth": "false" if is_hallucinated else "true",
-                        "annotation_label": label,
-                        "wiki_reference": wiki_bio_text[:200]
+                        "label": label,
+                        "is_hallucinated": 1 if label in ("minor_inaccurate", "major_inaccurate") else 0,
+                        "pcc_weight": 1.0 if label == "accurate" else (0.5 if label == "minor_inaccurate" else 0.0)
                     })
-
-            print(f"   [OK] Loaded {len(dataset)} passages -> {len(dataset_records)} sentences total")
-
+            print(f"   [OK] Loaded {len(dataset_records)} annotated sentences.")
         except Exception as e:
-            print(f"   [ERR] Error loading from HuggingFace: {e}")
+            print(f"   [ERR] Error loading: {e}")
             HAS_DATASETS = False
 
     if not HAS_DATASETS or not dataset_records:
-        # Fallback: check for a local JSON export
-        local_path = os.path.join(os.path.dirname(__file__), "wiki_bio_gpt3_sample.json")
-        if os.path.exists(local_path):
-            print(f"   Loading local fallback from {local_path}...")
-            with open(local_path, "r", encoding="utf-8") as f:
-                dataset_records = json.load(f)
-        else:
-            print("   [!] Using hardcoded sample (HuggingFace unavailable & no local file found)")
-            dataset_records = [
-                {"text": "The capital of France is Paris.", "ground_truth": "true", "annotation_label": "accurate"},
-                {"text": "Water boils at 100 degrees Celsius at sea level.", "ground_truth": "true", "annotation_label": "accurate"},
-                {"text": "The Eiffel Tower is located in Berlin, Germany.", "ground_truth": "false", "annotation_label": "major_inaccurate"},
-                {"text": "Albert Einstein invented the light bulb.", "ground_truth": "false", "annotation_label": "major_inaccurate"},
-                {"text": "The moon is made of green cheese.", "ground_truth": "false", "annotation_label": "major_inaccurate"},
-            ]
+        print("[!] Dataset unavailable. Check setup.")
+        return
 
-    # Limit to prevent excessive API usage
+    # Limit for API costs/speed
     MAX_SAMPLES = 150
-    if len(dataset_records) > MAX_SAMPLES:
-        print(f"   [*] Limiting {len(dataset_records)} sentences -> {MAX_SAMPLES} to stay within API rate limits")
-        dataset_records = dataset_records[:MAX_SAMPLES]
+    dataset_records = dataset_records[:MAX_SAMPLES]
 
-    # Show class distribution
-    true_count = sum(1 for r in dataset_records if r["ground_truth"] == "true")
-    false_count = sum(1 for r in dataset_records if r["ground_truth"] == "false")
-    print(f"\n   Class Distribution: {true_count} accurate / {false_count} hallucinated")
-
-    # ──────────────────────────────────────────────────────
-    # 2. Run Verification Pipeline (Concurrently)
-    # ──────────────────────────────────────────────────────
+    # 2. Run Verification Pipeline
     results = []
     print("\n[*] Running Verification Pipeline (Concurrent)...")
-
     semaphore = asyncio.Semaphore(15)
 
     async def process_item(item):
         async with semaphore:
             req = VerifyRequest(text=item["text"])
-            result_dict = await verify_text(req)
+            res = await verify_text(req)
+            
+            # Map system confidence & status to a continuous Factuality Score S [0, 1]
+            status = res.get("status", "true").lower()
+            conf = res.get("confidence_score", 50)
+            
+            # 0.5 is neutral. status=true pulls it up, status=false pulls it down.
+            if status == "true":
+                s_score = 0.5 + (conf / 200.0)  # Maps 0-100 to 0.5-1.0
+            else:
+                s_score = 0.5 - (conf / 200.0)  # Maps 0-100 to 0.0-0.5
+            
             return {
-                "sentence": item["text"],
-                "ground_truth": item["ground_truth"],
-                "annotation_label": item.get("annotation_label", "unknown"),
-                "predicted_status": result_dict.get("status", "error"),
-                "confidence": result_dict.get("confidence_score", 0),
-                "correction": result_dict.get("correction", ""),
-                "source": result_dict.get("source", "None")
+                "ground_nonfact": item["is_hallucinated"],
+                "ground_factual": 1 - item["is_hallucinated"],
+                "ground_pcc": item["pcc_weight"],
+                "pred_status": 1 if status == "true" else 0,
+                "factuality_score": s_score,
+                "hallucination_score": 1.0 - s_score
             }
 
     tasks = [process_item(item) for item in dataset_records]
-
     for future in tqdm(asyncio.as_completed(tasks), total=len(tasks)):
-        result = await future
-        results.append(result)
+        results.append(await future)
 
-    # ──────────────────────────────────────────────────────
-    # 3. Calculate Metrics
-    # ──────────────────────────────────────────────────────
+    # 3. Calculate Advanced Metrics
     df = pd.DataFrame(results)
-    df['predicted_status'] = df['predicted_status'].str.lower()
+    
+    # Conventional Binary Metrics
+    acc = accuracy_score(df["ground_factual"], df["pred_status"])
+    
+    # AUC-PR (Average Precision)
+    # NonFact AUC-PR uses hallucination_score as probability of being 1 (hallucinated)
+    nonfact_auc = average_precision_score(df["ground_nonfact"], df["hallucination_score"])
+    
+    # Factual AUC-PR uses factuality_score as probability of being 1 (factual)
+    factual_auc = average_precision_score(df["ground_factual"], df["factuality_score"])
+    
+    # Ranking (PCC)
+    # Correlation between our factuality_score and the 3-category human weights
+    pcc_val, _ = pearsonr(df["factuality_score"], df["ground_pcc"])
 
-    # Binary mapping: 'true' (accurate) = 1, 'false' (hallucinated) = 0
-    y_true = df['ground_truth'].apply(lambda x: 1 if x == 'true' else 0)
-    y_pred = df['predicted_status'].apply(lambda x: 1 if x == 'true' else 0)
-
-    acc = accuracy_score(y_true, y_pred)
-    precision, recall, f1, _ = precision_recall_fscore_support(
-        y_true, y_pred, average='weighted', zero_division=0
-    )
-
-    # Per-class metrics
-    precision_cls, recall_cls, f1_cls, support_cls = precision_recall_fscore_support(
-        y_true, y_pred, average=None, labels=[0, 1], zero_division=0
-    )
-
-    print("\n" + "=" * 55)
-    print("  TRUTH GUARD - EVALUATION RESULTS")
-    print("  Dataset: potsawee/wiki_bio_gpt3_hallucination")
-    print("=" * 55)
-    print(f"  Total Sentences Evaluated : {len(df)}")
-    print(f"  Accuracy                  : {acc * 100:.2f}%")
-    print(f"  Precision (weighted)      : {precision * 100:.2f}%")
-    print(f"  Recall (weighted)         : {recall * 100:.2f}%")
-    print(f"  F1-Score (weighted)       : {f1 * 100:.2f}%")
-
-    print("\n  Per-Class Breakdown:")
-    print(f"  {'Class':<20} {'Precision':>10} {'Recall':>10} {'F1':>10} {'Support':>10}")
-    print(f"  {'-'*60}")
-    print(f"  {'Hallucinated':<20} {precision_cls[0]*100:>9.2f}% {recall_cls[0]*100:>9.2f}% {f1_cls[0]*100:>9.2f}% {support_cls[0]:>10}")
-    print(f"  {'Accurate':<20} {precision_cls[1]*100:>9.2f}% {recall_cls[1]*100:>9.2f}% {f1_cls[1]*100:>9.2f}% {support_cls[1]:>10}")
-
-    # Confusion Matrix
-    cm = confusion_matrix(y_true, y_pred, labels=[0, 1])
-    print(f"\n  Confusion Matrix:")
-    print(f"                     Pred Hallucinated   Pred Accurate")
-    print(f"  True Hallucinated       {cm[0][0]:>5}              {cm[0][1]:>5}")
-    print(f"  True Accurate           {cm[1][0]:>5}              {cm[1][1]:>5}")
-
-    # Show examples
-    hallucinations = df[df['ground_truth'] == 'false']
-    if not hallucinations.empty:
-        print("\n  Sample Corrections (Ground Truth: Hallucinated):")
-        for i, row in hallucinations.head(3).iterrows():
-            sent = row['sentence'][:70]
-            print(f"  - Sentence: {sent}...")
-            print(f"    Label: {row['annotation_label']} | Predicted: {row['predicted_status'].upper()} | Confidence: {row['confidence']}")
-            if row['correction']:
-                print(f"    Correction: {row['correction'][:80]}")
-            print()
-
-    # Save to CSV
-    output_file = os.path.join(os.path.dirname(__file__), "evaluation_results.csv")
-    df.to_csv(output_file, index=False)
-    print(f"  Detailed results saved to {output_file}")
-    print("=" * 55)
-
+    print("\n" + "=" * 65)
+    print("  TRUTH GUARD - ADVANCED RESEARCH METRICS")
+    print("  Dataset: WikiBio GPT-3 (Post-hoc Evaluation)")
+    print("=" * 65)
+    print(f"  Accuracy (Overall)        : {acc * 100:.2f}%")
+    print(f"  NonFact (AUC-PR)          : {nonfact_auc * 100:.2f}")
+    print(f"  Factual (AUC-PR)          : {factual_auc * 100:.2f}")
+    print(f"  Ranking (Pearson PCC)     : {pcc_val * 100:.2f}")
+    print("-" * 65)
+    
+    print("\nComparison Table Format (for paper):")
+    print("-" * 65)
+    print(f"{'Method':<25} {'NonFact(AUC)':<15} {'Factual(AUC)':<15} {'PCC':<10}")
+    print(f"{'-'*25} {'-'*15} {'-'*15} {'-'*10}")
+    print(f"{'Random Guessing':<25} {'72.96':<15} {'27.04':<15} {'-'}")
+    print(f"{'Truth Guard (Groq+Exa)':<25} {nonfact_auc*100:>12.2f} {factual_auc*100:>12.2f} {pcc_val*100:>8.2f}")
+    print("-" * 65)
+    print("=" * 65)
 
 if __name__ == "__main__":
     asyncio.run(evaluate())

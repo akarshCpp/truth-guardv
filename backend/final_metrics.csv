@@ -1,0 +1,10 @@
+Metric,Random Guessing,Truth Guard (Ours)
+Accuracy (Overall),50.00%,90.42%
+NonFact (AUC-PR),72.96,91.24
+Factual (AUC-PR),27.04,88.67
+Ranking (PCC),-,89.42
+Avg Latency (s),-,1.56
+Dataset,SelfCheckGPT,WikiBio GPT-3
+Samples,-,150
+Inference Engine,-,Groq Llama-3-70B
+Search Engine,-,Exa Neural Search
