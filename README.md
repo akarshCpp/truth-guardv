@@ -49,8 +49,6 @@ truth-guard/
 │   └── evaluation_results.csv    # Saved benchmark results
 ├── test_env/                     # Local testing
 ├── README.md                     # Project documentation
-├── truth_guard_research_paper.md # Research paper (Markdown)
-└── ieee_truth_guard.tex          # Research paper (IEEE LaTeX)
 ```
 
 ---
