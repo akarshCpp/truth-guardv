@@ -1,4 +1,4 @@
-# 🛡️ Truth Guard — Full Project Walkthrough
+# 🛡️ Truth Guard 
 
 ## What Is Truth Guard?
 
