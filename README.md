@@ -208,9 +208,6 @@ This script measures how well Truth Guard actually works using the **HaluEval** 
 
 4. **Saves results** to `evaluation_results.csv` for further analysis
 
-> [!TIP]
-> The script limits to 150 samples by default to prevent burning through Groq/Exa API quotas. Adjust line 74 to change this.
-
 ---
 
 ### 7. `backend/.env` — API Keys
