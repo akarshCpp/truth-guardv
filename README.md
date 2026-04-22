@@ -8,18 +8,7 @@ Truth Guard is a **real-time AI hallucination detection and correction system**.
 
 ## Architecture Overview
 
-```mermaid
-graph LR
-    A["🌐 Any Webpage<br/>(ChatGPT, Gemini, etc.)"] -->|"Injects UI"| B["🧩 Chrome Extension<br/>(content_script.js)"]
-    B -->|"User clicks Verify"| C["📡 background.js<br/>(Service Worker)"]
-    C -->|"POST /verify"| D["⚡ FastAPI Backend<br/>(main.py)"]
-    D -->|"Step 1: Neural Search"| E["🔍 Exa API<br/>(Real-time Facts)"]
-    D -->|"Step 2: LLM Reasoning"| F["🧠 Groq LPU<br/>(Llama 3.3 70B)"]
-    F -->|"Structured JSON"| D
-    D -->|"Response"| C
-    C -->|"Result data"| B
-    B -->|"Renders UI Card"| A
-```
+![Truth Guard System Architecture](assets/architecture.png)
 
 The system has **3 layers**:
 
