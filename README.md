@@ -217,12 +217,12 @@ The verification process follows a rigorous 11-step RAG (Retrieval-Augmented Gen
 
 ## Tech Stack Summary
 
-| Component | Technology |
-|-----------|-----------|
-| Extension | Chrome Manifest V3, Vanilla JS, CSS3 |
-| Backend Framework | FastAPI (Python) |
-| LLM | Llama 3.3 70B via Groq LPU |
-| Search/RAG | Exa Neural Search API |
-| Orchestration | LangChain (prompts + structured output) |
-| Evaluation | HaluEval dataset, scikit-learn metrics |
-| Concurrency | Python asyncio with semaphore |
+| Component | Technology | Logo / Badge |
+| :--- | :--- | :--- |
+| **Extension** | Chrome Manifest V3, Vanilla JS, CSS3 | ![Chrome](https://img.shields.io/badge/Chrome-4285F4?style=flat-square&logo=Google%20Chrome&logoColor=white) ![JavaScript](https://img.shields.io/badge/JavaScript-F7DF1E?style=flat-square&logo=javascript&logoColor=black) ![CSS3](https://img.shields.io/badge/CSS3-1572B6?style=flat-square&logo=css3&logoColor=white) |
+| **Backend Framework** | FastAPI (Python) | ![FastAPI](https://img.shields.io/badge/FastAPI-005571?style=flat-square&logo=fastapi&logoColor=white) ![Python](https://img.shields.io/badge/Python-3776AB?style=flat-square&logo=python&logoColor=white) |
+| **LLM Inference** | Llama 3.3 70B via Groq LPU | ![Groq](https://img.shields.io/badge/Groq-f55036?style=flat-square) ![Meta](https://img.shields.io/badge/Meta-0668E1?style=flat-square&logo=Meta&logoColor=white) |
+| **Search/RAG** | Exa Neural Search API | ![Exa](https://img.shields.io/badge/Exa-black?style=flat-square) |
+| **Orchestration** | LangChain | ![LangChain](https://img.shields.io/badge/LangChain-121212?style=flat-square&logo=chainlink&logoColor=white) |
+| **Evaluation** | HaluEval, Scikit-Learn | ![Scikit-Learn](https://img.shields.io/badge/scikit--learn-%23F7931E.svg?style=flat-square&logo=scikit-learn&logoColor=white) |
+| **Concurrency** | Asyncio | ![Python](https://img.shields.io/badge/Asyncio-3776AB?style=flat-square&logo=python&logoColor=white) |
