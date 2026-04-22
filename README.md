@@ -207,40 +207,11 @@ Contains two keys:
 
 ---
 
-## End-to-End Data Flow
+## Verification Pipeline
 
-Here's exactly what happens when a user clicks **🛡️ Verify Truth**:
+![Truth Guard Verification Pipeline](assets/pipeline.png)
 
-```
-1. User clicks button on ChatGPT page
-    ↓
-2. content_script.js extracts the AI response text
-    ↓
-3. Sends {action: "verify_text", text: "..."} to background.js
-    ↓
-4. background.js POSTs to http://localhost:8000/verify
-    ↓
-5. FastAPI receives the text
-    ↓
-6. Exa neural search finds 3 relevant web pages
-   → Returns URLs, titles, and page text snippets
-    ↓
-7. LangChain builds a prompt with:
-   - System: "You are a fact-checking AI..."
-   - Human: "Internet Context: [Exa results]\n\nUser Text: [input]"
-    ↓
-8. Groq runs Llama 3.3 70B with structured output
-   → Returns: {status, confidence_score, original_text, correction, source}
-    ↓
-9. Backend attaches Exa sources[] to the response
-    ↓
-10. JSON response flows back: Backend → background.js → content_script.js
-    ↓
-11. Frontend renders either:
-    - ✅ Green "Verified Safe" card (with confidence bar + sources)
-    - ⚠️ Red "Hallucination Detected" card (with original, correction,
-         confidence bar, risk bar, sources, and "Apply Correction" button)
-```
+The verification process follows a rigorous 11-step RAG (Retrieval-Augmented Generation) workflow, from claim extraction to UI rendering.
 
 ---
 
