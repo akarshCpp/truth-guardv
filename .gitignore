@@ -116,3 +116,8 @@ credentials.json
 *.pid
 *.sqlite3
 *.db
+
+# Documentation / Explanations
+why_better.md
+deep_working.md
+

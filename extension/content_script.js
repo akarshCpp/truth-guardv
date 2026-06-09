@@ -1,3 +1,10 @@
+function getConfidenceLabel(score) {
+  const numScore = parseInt(score) || 85;
+  if (numScore >= 90) return 'High';
+  if (numScore >= 70) return 'Medium';
+  return 'Low';
+}
+
 function addVerifyButtons() {
   const aiMessages = document.querySelectorAll(
     '.ai-message, ' +
@@ -78,7 +85,7 @@ function addVerifyButtons() {
         btn.classList.remove('processing');
         btn.disabled = false;
         
-        if (response && response.success && response.data) {
+        if (response && response.success && response.data && response.data.status !== "error") {
           const data = response.data;
           const sources = data.sources || [];
           if (data.status === "false") {
@@ -86,15 +93,23 @@ function addVerifyButtons() {
             btn.style.background = 'linear-gradient(135deg, #e53e3e 0%, #c53030 100%)';
             highlightHallucination(message, data.original_text, data.correction, data.confidence_score, latencyMs, sources);
           } else {
-            const scoreText = data.confidence_score ? ` ${data.confidence_score}%` : '';
-            btn.innerHTML = `✅ Verified Safe${scoreText}`;
+            const label = getConfidenceLabel(data.confidence_score);
+            btn.innerHTML = `✅ Verified Safe (${label})`;
             btn.style.background = 'linear-gradient(135deg, #00b894 0%, #00cec9 100%)';
             showVerifiedSafeCard(message, data.confidence_score, sources);
           }
         } else {
           console.error("Verification failed", response);
-          btn.innerHTML = '❌ API Error';
-          setTimeout(() => { btn.innerHTML = '<span>🛡️</span> Verify Truth'; btn.style.background = ''; }, 3000);
+          let displayMsg = '❌ API Error';
+          const errMsg = (response && response.error) || (response && response.data && response.data.message) || '';
+          if (errMsg.includes('GROQ_API_KEY')) {
+            displayMsg = '❌ API Key Missing';
+          } else if (errMsg.includes('Failed to fetch') || errMsg.includes('Failed to retrieve')) {
+            displayMsg = '❌ Service Offline';
+          }
+          btn.innerHTML = displayMsg;
+          btn.style.background = 'linear-gradient(135deg, #e53e3e 0%, #c53030 100%)';
+          setTimeout(() => { btn.innerHTML = '<span>🛡️</span> Verify Truth'; btn.style.background = ''; }, 4000);
         }
       });
     });
@@ -124,6 +139,7 @@ function buildSourcesHTML(sources) {
 
 function showVerifiedSafeCard(messageElement, score, sources) {
   const scoreDisplay = score || 85;
+  const label = getConfidenceLabel(scoreDisplay);
   const card = document.createElement('div');
   card.className = 'tg-analysis-card verified-safe';
   card.innerHTML = `
@@ -132,13 +148,13 @@ function showVerifiedSafeCard(messageElement, score, sources) {
         <svg fill="none" stroke="currentColor" viewBox="0 0 24 24" width="16" height="16"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m5.618-4.016A11.955 11.955 0 0112 2.944a11.955 11.955 0 01-8.618 3.04A12.02 12.02 0 003 9c0 5.591 3.824 10.29 9 11.622 5.176-1.332 9-6.03 9-11.622 0-1.042-.133-2.052-.382-3.016z"></path></svg>
         Verified Safe
       </div>
-      <div class="tg-score-badge high">Confidence: ${scoreDisplay}%</div>
+      <div class="tg-score-badge high">Confidence: ${label}</div>
     </div>
     <div class="tg-metrics-container">
       <div class="tg-metric-row">
         <div class="tg-metric-labels">
           <span>🛡️ Detect Confidence</span>
-          <span>${scoreDisplay}%</span>
+          <span>${label}</span>
         </div>
         <div class="tg-progress-bg">
           <div class="tg-progress-fill confidence" style="width: 0%" data-target-width="${scoreDisplay}%"></div>
@@ -160,6 +176,7 @@ function showVerifiedSafeCard(messageElement, score, sources) {
 function highlightHallucination(messageElement, originalText, correction, score, latencyMs, sources) {
   const scoreDisplay = score ? score : '92';
   const numScore = parseInt(scoreDisplay) || 0;
+  const label = getConfidenceLabel(numScore);
   
   let riskLabel = 'Low';
   let riskColor = '#d69e2e';
@@ -183,7 +200,7 @@ function highlightHallucination(messageElement, originalText, correction, score,
         <svg fill="none" stroke="currentColor" viewBox="0 0 24 24" width="16" height="16"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 9v2m0 4h.01m-6.938 4h13.856c1.54 0 2.502-1.667 1.732-3L13.732 4c-.77-1.333-2.694-1.333-3.464 0L3.34 16c-.77 1.333.192 3 1.732 3z"></path></svg>
         Hallucination Detected
       </div>
-      <div class="tg-score-badge">Confidence: ${scoreDisplay}%</div>
+      <div class="tg-score-badge">Confidence: ${label}</div>
     </div>
     
     <div class="tg-content-row">
@@ -195,12 +212,12 @@ function highlightHallucination(messageElement, originalText, correction, score,
       <span class="tg-label">Truth Guard Verification</span>
       <span class="tg-correction">${correction}</span>
     </div>
-
+ 
     <div class="tg-metrics-container">
       <div class="tg-metric-row">
         <div class="tg-metric-labels">
           <span>🛡️ Detect Confidence</span>
-          <span>${scoreDisplay}%</span>
+          <span>${label}</span>
         </div>
         <div class="tg-progress-bg">
           <div class="tg-progress-fill confidence" style="width: 0%" data-target-width="${scoreDisplay}%"></div>

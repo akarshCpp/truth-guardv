@@ -1,8 +1,10 @@
 import os
-from fastapi import FastAPI
+from fastapi import FastAPI, HTTPException
 from fastapi.middleware.cors import CORSMiddleware
 from pydantic import BaseModel, Field
 from dotenv import load_dotenv
+from sklearn.feature_extraction.text import TfidfVectorizer
+from sklearn.metrics.pairwise import cosine_similarity
 
 load_dotenv()
 
@@ -31,21 +33,12 @@ class VerificationResult(BaseModel):
 async def verify_text(request: VerifyRequest):
     groq_api_key = os.getenv("GROQ_API_KEY")
     
-    # Fallback to mock logic if the API key isn't provided yet
+    # Error out if the API key isn't provided
     if not groq_api_key or groq_api_key == "your_groq_api_key_here":
-        if "Berlin" in request.text:
-            return {
-                "status": "false",
-                "original_text": "The Eiffel Tower is in Berlin.",
-                "correction": "The Eiffel Tower is in Paris, France.",
-                "source": "https://en.wikipedia.org/wiki/Eiffel_Tower",
-                "confidence_score": 98
-            }
-        return {
-            "status": "true",
-            "original_text": request.text,
-            "confidence_score": 85
-        }
+        raise HTTPException(
+            status_code=400, 
+            detail="GROQ_API_KEY is not configured. Please set the GROQ_API_KEY in your backend .env file."
+        )
 
     try:
         from langchain_groq import ChatGroq
@@ -110,6 +103,22 @@ async def verify_text(request: VerifyRequest):
         # Add Exa source URLs into the result dict
         result_dict = result.model_dump()
         result_dict["sources"] = sources_list
+        
+        # Mathematically ground the confidence score using Cosine Similarity
+        # between the user text and the retrieved internet context.
+        if search_context and search_context != "No internet context available." and not search_context.startswith("Failed to retrieve"):
+            try:
+                vectorizer = TfidfVectorizer(stop_words='english')
+                tfidf_matrix = vectorizer.fit_transform([request.text, search_context])
+                sim = cosine_similarity(tfidf_matrix[0:1], tfidf_matrix[1:2])[0][0]
+                
+                # Scale the raw cosine similarity (typically low between short query and long context)
+                scaled_sim = min(100, int(sim * 200))
+                
+                # Blend the LLM's guessed confidence score with the mathematically computed similarity
+                result_dict["confidence_score"] = (result_dict["confidence_score"] + scaled_sim) // 2
+            except Exception as e:
+                print(f"Cosine similarity error: {e}")
              
         return result_dict
         
